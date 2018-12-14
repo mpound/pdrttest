@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style>
+#div1 {
+  width: 250px;
+  height: 40px;
+  padding: 10px;
+  margin:  10px;
+  border: 1px dashed #aaaaaa;
+}
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<script>
+var counter = 0;
+
+var makenewrow = function(lineid) {
+    var linetr='<tr id="'+lineid+'">'
+    var newRow = $(linetr);
+    var cols = "";
+    console.log("adding row "+lineid);
+    cols += '<td><label class="form-control" name="name' + counter + '"</label>'+lineid+'</td>';
+    
+    cols += '<td><input type="number" class="form-control" name="intensity"' + counter + '"/></td>';
+    cols += '<td><select><option value="jy">Jy</option><option value="mjy">mJy</option></select></td>';
+    cols += '<td><input type="number" class="form-control" name="error"' + counter + '"/></td>';
+    cols += '<td><select><option value="jy">Jy</option><option value="mjy">mJy</option><option value="percent">%</option></select></td>';
+
+    var cola = '<td ><input type="button" class="btn btn-md btn-danger" value="Delete" onclick="deleterow(\''+lineid+'\')"></td>';
+    cols += cola;
+    console.log(cola);
+   
+    newRow.append(cols);
+    // add leading $() to turn retruned DOM object into jquery object
+    $(document.getElementById("dataTable")).append(newRow);
+
+    //$("table").append(newRow);
+
+    counter++;
+}
+
+var setDraggable = function (lineid,color,draggable) {
+    var dragid = lineid+".drag";     
+    console.log("setting draggable "+dragid+" " + color + " "+draggable);
+    var mydrag = document.getElementById(dragid);
+    mydrag.style.backgroundColor = color;
+    mydrag.draggable=draggable;
+}
+
+var deleterow = function(lineid) {
+  console.log("trying to delete row "+lineid);
+  document.getElementById(lineid).remove();
+  counter -= 1;
+  setDraggable(lineid,"white",true);
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  var foo  = document.getElementById(data);
+  var lineid = foo.textContent;
+  setDraggable(lineid,"yellow",false);
+  makenewrow(lineid);
+}
+
+
+
+</script>
+
+</head>
+<body>
+
+<p>Drag the W3Schools image into the rectangle:</p>
+
+<!--
+<img id="drag1" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">
+-->
+<div id="CO(J=2-1).drag" draggable="true"  ondragstart="drag(event)"  width="20">CO(J=2-1)</div>
+
+<div id="[C I] 609 um.drag" draggable="true"  ondragstart="drag(event)"  width="20">[C I] 609 um</div>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">Drag &amp; Drop line here to add</div>
+<br>
+
+
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <table id="dataTable" class="table">
+    <thead>
+        <tr>
+            <th class="col-sm-3">Line ID</th>
+            <th class="col-sm-2">Intensity</th>
+            <th class="col-sm-1">Units(I)</th>
+            <th class="col-sm-2">Error</th>  
+            <th class="col-sm-1">Units(E)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <!--
+            <td class="col-sm-4">
+                <input type="text" name="name" class="form-control" />
+            </td>
+            <td class="col-sm-2">
+                <input type="text" name="intensity"  class="form-control"/>
+            </td>         
+            <td class="col-sm-1">
+                <input type="text" name="uniti"  class="form-control"/>
+            </td>
+            <td class="col-sm-2">
+                <input type="text" name="errori"  class="form-control"/>
+            </td>           
+            <td class="col-sm-1">
+                <input type="text" name="unitei"  class="form-control"/>
+            </td>
+            <td class="col-sm-2"><a class="deleteRow"></a>
+
+            </td>
+            -->
+        </tr>
+    </tbody>
+    <!--
+   <tfoot>
+    
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <input type="button" class="btn btn-block " id="addrow" value="Submit"/>
+            </td>
+        </tr>
+        <tr>
+        </tr>
+    </tfoot>
+    -->
+</table>
+<center>
+<button type="submit" class="btn btn-primary">Submit</button>
+<button type="button" class="btn btn-secondary">Save Table</button>
+<button type="button" class="btn btn-danger">Clear Table</button>
+</center>
+</div>
+
+</body>
+</html>
