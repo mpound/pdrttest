@@ -1,0 +1,19 @@
+#demo {
+    -webkit-transition: width 2s ease;
+    -moz-transition: width 2s ease;
+    -o-transition: width 2s ease;
+    transition: width 2s ease;
+    
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    background: white;
+    vertical-align: middle;
+    line-height: 30px;
+    height: 30px;
+
+    width: 0px;
+}
+#demo.in {
+    width: 70%;
+}
