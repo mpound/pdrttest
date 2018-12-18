@@ -4,8 +4,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 #div1 {
-  width: 250px;
-  height: 40px;
+//  width: 250px;
+//  height: 40px;
   padding: 10px;
   margin:  10px;
   border: 1px dashed #aaaaaa;
@@ -13,99 +13,47 @@
 </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+<link rel="stylesheet" href="css/demo.css">
 <link rel="stylesheet" href="https://www.dropzonejs.com/css/dropzone.css">
 
-<script src="js/dropzone.js"></script>
 
-<script>
-var counter = 0;
-
-var makenewrow = function(lineid) {
-    var linetr='<tr id="'+lineid+'">'
-    var newRow = $(linetr);
-    var cols = "";
-    console.log("adding row "+lineid);
-    cols += '<td><label class="form-control" name="name' + counter + '"</label>'+lineid+'</td>';
-    
-    cols += '<td><input type="number" class="form-control" name="intensity"' + counter + '"/></td>';
-    cols += '<td><select><option value="jy">Jy</option><option value="mjy">mJy</option></select></td>';
-    cols += '<td><input type="number" class="form-control" name="error"' + counter + '"/></td>';
-    cols += '<td><select><option value="jy">Jy</option><option value="mjy">mJy</option><option value="percent">%</option></select></td>';
-
-    var cola = '<td ><input type="button" class="btn btn-md btn-danger" value="Delete" onclick="deleterow(\''+lineid+'\')"></td>';
-    cols += cola;
-    console.log(cola);
-   
-    newRow.append(cols);
-    // add leading $() to turn retruned DOM object into jquery object
-    $(document.getElementById("dataTable")).append(newRow);
-
-    //$("table").append(newRow);
-
-    counter++;
-}
-
-var setDraggable = function (lineid,color,draggable) {
-    var dragid = lineid+".drag";     
-    console.log("setting draggable "+dragid+" " + color + " "+draggable);
-    var mydrag = document.getElementById(dragid);
-    mydrag.style.backgroundColor = color;
-    mydrag.draggable=draggable;
-}
-
-var deleterow = function(lineid) {
-  console.log("trying to delete row "+lineid);
-  document.getElementById(lineid).remove();
-  counter -= 1;
-  setDraggable(lineid,"white",true);
-}
-
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-
-function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function drop(ev) {
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  var foo  = document.getElementById(data);
-  var lineid = foo.textContent;
-  setDraggable(lineid,"yellow",false);
-  makenewrow(lineid);
-}
-
-
-
-</script>
 
 </head>
 <body>
+<div class="container">
 
-<p>Drag your selected lines into the rectangle:</p>
+
+<button type="button" class="btn btn-primary btn-sm" 
+        data-toggle="toggle" data-target="#demo">CO ladder
+</button>
+
+<div id="demo">
+        <button class="btn btn-default btn-xs" type="button"
+    id="CO(J=1-0).drag" draggable="true"  ondragstart="drag(event)">CO(J=1-0)</button>
+        <button class="btn btn-default btn-xs" type="button"
+    id="CO(J=2-1).drag" draggable="true"  ondragstart="drag(event)">CO(J=2-1)</button>
+        <button class="btn btn-default btn-xs" type="button"
+    id="CO(J=3-2).drag" draggable="true"  ondragstart="drag(event)">CO(J=3-2)</button>
+
+</div>
+<div>
+        <button class="btn btn-primary btn-sm" type="button"
+    id="[C I] 609 um.drag" draggable="true"  ondragstart="drag(event)">[C I] 609 um</button>
+</div>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+<p>
+Drag &amp; Drop line onto table to add
+</p>
 
 <!--
-<img id="drag1" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">
--->
-<div id="CO(J=2-1).drag" draggable="true"  ondragstart="drag(event)"  width="20">CO(J=2-1)</div>
-
-<div id="[C I] 609 um.drag" draggable="true"  ondragstart="drag(event)"  width="20">[C I] 609 um</div>
-
-<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">Drag &amp; Drop line here to add</div>
-<br>
-
 <form action="/file-upload"
       class="dropzone needsclick"
       id="my-awesome-dropzone"></form>
+-->
 
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container">
     <table id="dataTable" class="table">
     <thead>
         <tr>
@@ -116,8 +64,7 @@ function drop(ev) {
             <th class="col-sm-1">Units(E)</th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
+    <tbody id="dataBody">
         <!--
             <td class="col-sm-4">
                 <input type="text" name="name" class="form-control" />
@@ -138,7 +85,6 @@ function drop(ev) {
 
             </td>
             -->
-        </tr>
     </tbody>
     <!--
    <tfoot>
@@ -153,12 +99,24 @@ function drop(ev) {
     </tfoot>
     -->
 </table>
+</div>
 <center>
 <button type="submit" class="btn btn-primary">Submit</button>
 <button type="button" class="btn btn-secondary">Save Table</button>
-<button type="button" class="btn btn-danger">Clear Table</button>
+<button type="button" onclick="deleteTable()" class="btn btn-danger">Clear Table</button>
 </center>
 </div>
 
+<script>
+$("[data-toggle='toggle']").click(function() {
+    var selector = $(this).data("target");
+    $(selector).toggleClass('in');
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="js/wits.js" defer ></script>
+<script type="text/javascript" src="js/dropzone.js"></script>
 </body>
 </html>
