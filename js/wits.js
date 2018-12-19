@@ -1,6 +1,7 @@
 
 var counter = 0;
 var selectedLines = [];
+var selectableColor = "#DECEF2";
 
 var makeNewRow = function(lineid) {
     var linetr='<tr id="'+lineid+'">'
@@ -44,7 +45,7 @@ var deleteRow = function(lineid) {
   var idx = selectedLines.indexOf(lineid);
   selectedLines.splice(idx,1);
   counter -= 1;
-  setDraggable(lineid,"white",true);
+  setDraggable(lineid,selectableColor,true);
 }
 
 var deleteTable = function() {

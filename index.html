@@ -1,47 +1,53 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
+<title>Photo Dissociation Region Toolbox Reborn!</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<style>
-#div1 {
-//  width: 250px;
-//  height: 40px;
-  padding: 10px;
-  margin:  10px;
-  border: 1px dashed #aaaaaa;
-}
-</style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="css/demo.css">
 <link rel="stylesheet" href="https://www.dropzonejs.com/css/dropzone.css">
 
-
-
 </head>
+
 <body>
 <div class="container">
 
 
-<button type="button" class="btn btn-primary btn-sm" 
-        data-toggle="toggle" data-target="#demo">CO ladder
+<div>
+<button type="button" class="btn btn-expandable btn-sm" 
+        data-toggle="toggle" data-target="#linelist-CO">CO ladder
 </button>
 
-<div id="demo">
-        <button class="btn btn-default btn-xs" type="button"
+<div class="linelist" id="linelist-CO">
+        <button class="btn btn-selectable btn-sm" type="button"
     id="CO(J=1-0).drag" draggable="true"  ondragstart="drag(event)">CO(J=1-0)</button>
-        <button class="btn btn-default btn-xs" type="button"
+        <button class="btn btn-selectable btn-sm" type="button"
     id="CO(J=2-1).drag" draggable="true"  ondragstart="drag(event)">CO(J=2-1)</button>
-        <button class="btn btn-default btn-xs" type="button"
+        <button class="btn btn-selectable btn-sm" type="button"
     id="CO(J=3-2).drag" draggable="true"  ondragstart="drag(event)">CO(J=3-2)</button>
-
 </div>
+</div>
+
 <div>
-        <button class="btn btn-primary btn-sm" type="button"
+<button type="button" class="btn btn-expandable btn-sm" 
+        data-toggle="toggle" data-target="#linelist-atomic">Atomic Lines
+</button>
+<div class="linelist" id="linelist-atomic">
+  <button class="btn btn-selectable btn-sm" type="button"
+    id="[O I] 63 um.drag" draggable="true"  ondragstart="drag(event)">[O I] 63 um</button>
+  <button class="btn btn-selectable btn-sm" type="button"
+    id="[O I] 145 um.drag" draggable="true"  ondragstart="drag(event)">[O I] 145 um</button>
+  <button class="btn btn-selectable btn-sm" type="button"
+    id="[C II] 158 um.drag" draggable="true"  ondragstart="drag(event)">[C II] 158 um</button>
+  <button class="btn btn-selectable btn-sm" type="button"
+    id="[C I] 370 um.drag" draggable="true"  ondragstart="drag(event)">[C I] 370 um</button>
+  <button class="btn btn-selectable btn-sm" type="button"
     id="[C I] 609 um.drag" draggable="true"  ondragstart="drag(event)">[C I] 609 um</button>
 </div>
+</div>
 
-<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+<div id="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
 <p>
 Drag &amp; Drop line onto table to add
 </p>
