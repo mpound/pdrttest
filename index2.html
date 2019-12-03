@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>Photo Dissociation Region Toolbox Reborn!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/demo.css">
+<!--
+<link rel="stylesheet" href="https://www.dropzonejs.com/css/dropzone.css">
+-->
+
+</head>
+
+<body>
+<div class="container">
+
+
+<div class="sidenav">
+<div class="button-group-vertical">
+    <button id="CO ladder" type="button" class="btn btn-expandable btn-sm dropdown-toggle" aria-haspopup="true" aria-expanded="false" 
+            data-toggle="dropdown">CO ladder</button>
+
+    <div class="dropdown-menu" aria-labelledby="CO ladder" id="linelist-CO">
+            <button class="dropdown-item btn btn-selectable btn-xs" onclick="clicked('CO(J=1-0)')" type="button" id="CO(J=1-0).drag">CO(J=1-0)</button>
+            <button class="dropdown-item btn btn-selectable btn-xs" type="button"
+        id="CO(J=2-1).drag" onclick="clicked('CO(J=2-1)')" >CO(J=2-1)</button>
+            <button class="dropdown-item btn btn-selectable btn-xs" type="button"
+        id="CO(J=3-2).drag" onclick="clicked('CO(J=3-2)')">CO(J=3-2)</button>
+    </div>
+</div>
+
+<div class="button-group-vertical">
+    <button type="button" class="btn btn-expandable btn-sm dropdown-toggle"  id="Atomic Lines"
+            data-toggle="dropdown">Atomic Lines</button>
+
+    <div class="dropdown-menu" id="linelist-atomic" aria-labelledby="Atomic Lines">
+      <button class="dropdown-item btn btn-selectable btn-sm" type="button"
+        id="[O I] 63 um.drag" onclick="clicked('[O I] 63 um')">[O I] 63 um</button>
+      <button class="dropdown-item btn btn-selectable btn-sm" type="button"
+        id="[O I] 145 um.drag" onclick="clicked('[O I] 145 um')">[O I] 145 um</button>
+      <button class="dropdown-item btn btn-selectable btn-sm" type="button"
+        id="[C II] 158 um.drag" onclick="clicked('[C II] 158 um')">[C II] 158 um</button>
+      <button class="dropdown-item btn btn-selectable btn-sm" type="button"
+        id="[C I] 370 um.drag" onclick="clicked('[C I] 370 um')">[C I] 370 um</button>
+      <button class="dropdown-item btn btn-selectable btn-sm" type="button"
+        id="[C I] 609 um.drag" onclick="clicked('[C I] 609 um')">[C I] 609 um</button>
+    </div>
+</div>
+
+</div>
+<!--
+<form action="/file-upload"
+      class="dropzone needsclick"
+      id="my-awesome-dropzone"></form>
+-->
+
+<div class="main">
+<!------ Include the above in your HEAD tag ---------->
+
+    <table id="dataTable" class="table">
+    <thead>
+        <tr>
+            <th class="col-sm-2">Line ID</th>
+            <th class="col-sm-3">Intensity</th>
+            <th class="col-sm-1">Units(I)</th>
+            <th class="col-sm-3">Error</th>  
+            <th class="col-sm-1">Units(E)</th>
+        </tr>
+    </thead>
+    <tbody id="dataBody">
+    </tbody>
+    </table>
+    <center>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-secondary">Save Table</button>
+    <button type="button" onclick="deleteTableA()" class="btn btn-danger">Clear Table</button>
+    </center>
+</div>
+</div>
+
+<script>
+$("[data-toggle='toggle']").click(function() {
+    var selector = $(this).data("target");
+    $(selector).toggleClass('in');
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="js/wits.js" defer ></script>
+<script type="text/javascript" src="js/dropzone.js"></script>
+</body>
+</html>

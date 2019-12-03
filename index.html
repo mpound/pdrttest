@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>Photo Dissociation Region Toolbox Reborn!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/demo.css">
+<link rel="stylesheet" href="https://www.dropzonejs.com/css/dropzone.css">
+
+</head>
+
+<body>
+<div class="container">
+
+
+<div>
+<button type="button" class="btn btn-expandable btn-sm" 
+        data-toggle="toggle" data-target="#linelist-CO">CO ladder
+</button>
+
+<div class="linelist" id="linelist-CO">
+        <button class="btn btn-selectable btn-sm" type="button"
+    id="CO(J=1-0).drag" draggable="true"  ondragstart="drag(event)">CO(J=1-0)</button>
+        <button class="btn btn-selectable btn-sm" type="button"
+    id="CO(J=2-1).drag" draggable="true"  ondragstart="drag(event)">CO(J=2-1)</button>
+        <button class="btn btn-selectable btn-sm" type="button"
+    id="CO(J=3-2).drag" draggable="true"  ondragstart="drag(event)">CO(J=3-2)</button>
+</div>
+</div>
+
+<div>
+<button type="button" class="btn btn-expandable btn-sm" 
+        data-toggle="toggle" data-target="#linelist-atomic">Atomic Lines
+</button>
+<div class="linelist" id="linelist-atomic">
+  <button class="btn btn-selectable btn-sm" type="button"
+    id="[O I] 63 um.drag" draggable="true"  ondragstart="drag(event)">[O I] 63 um</button>
+  <button class="btn btn-selectable btn-sm" type="button"
+    id="[O I] 145 um.drag" draggable="true"  ondragstart="drag(event)">[O I] 145 um</button>
+  <button class="btn btn-selectable btn-sm" type="button"
+    id="[C II] 158 um.drag" draggable="true"  ondragstart="drag(event)">[C II] 158 um</button>
+  <button class="btn btn-selectable btn-sm" type="button"
+    id="[C I] 370 um.drag" draggable="true"  ondragstart="drag(event)">[C I] 370 um</button>
+  <button class="btn btn-selectable btn-sm" type="button"
+    id="[C I] 609 um.drag" draggable="true"  ondragstart="drag(event)">[C I] 609 um</button>
+</div>
+</div>
+
+<div id="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+<p>
+Drag &amp; Drop line onto table to add
+</p>
+
+<!--
+<form action="/file-upload"
+      class="dropzone needsclick"
+      id="my-awesome-dropzone"></form>
+-->
+
+<!------ Include the above in your HEAD tag ---------->
+
+    <table id="dataTable" class="table">
+    <thead>
+        <tr>
+            <th class="col-sm-3">Line ID</th>
+            <th class="col-sm-2">Intensity</th>
+            <th class="col-sm-1">Units(I)</th>
+            <th class="col-sm-2">Error</th>  
+            <th class="col-sm-1">Units(E)</th>
+        </tr>
+    </thead>
+    <tbody id="dataBody">
+        <!--
+            <td class="col-sm-4">
+                <input type="text" name="name" class="form-control" />
+            </td>
+            <td class="col-sm-2">
+                <input type="text" name="intensity"  class="form-control"/>
+            </td>         
+            <td class="col-sm-1">
+                <input type="text" name="uniti"  class="form-control"/>
+            </td>
+            <td class="col-sm-2">
+                <input type="text" name="errori"  class="form-control"/>
+            </td>           
+            <td class="col-sm-1">
+                <input type="text" name="unitei"  class="form-control"/>
+            </td>
+            <td class="col-sm-2"><a class="deleteRow"></a>
+
+            </td>
+            -->
+    </tbody>
+    <!--
+   <tfoot>
+    
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <input type="button" class="btn btn-block " id="addrow" value="Submit"/>
+            </td>
+        </tr>
+        <tr>
+        </tr>
+    </tfoot>
+    -->
+</table>
+</div>
+<center>
+<button type="submit" class="btn btn-primary">Submit</button>
+<button type="button" class="btn btn-secondary">Save Table</button>
+<button type="button" onclick="deleteTable()" class="btn btn-danger">Clear Table</button>
+</center>
+</div>
+
+<script>
+$("[data-toggle='toggle']").click(function() {
+    var selector = $(this).data("target");
+    $(selector).toggleClass('in');
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="js/wits.js" defer ></script>
+<script type="text/javascript" src="js/dropzone.js"></script>
+</body>
+</html>
